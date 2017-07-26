@@ -20,5 +20,3 @@ inp = input('input:')
 
 if inp == 'true':
     event_obj.set()  # 唤醒
-
-def cc()

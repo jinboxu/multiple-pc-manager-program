@@ -5,6 +5,7 @@ data_path = os.path.join(base_dir , 'database', 'users_data.json')
 
 
 class MyThread(threading.Thread):
+    '''核心处理类，该类得到用户的指令，通过paramiko管理主机'''
     def __init__(self, ip_addr, port, username, passwd):
         super(MyThread, self).__init__()
         self.ip_addr = ip_addr
@@ -27,9 +28,6 @@ class MyThread(threading.Thread):
             else:
                 self.other_command()
             event.clear()
-                # Manager.other_command(self)
-
-
 
     def choose_pc(self):
         try:
@@ -70,6 +68,7 @@ class MyThread(threading.Thread):
 
 
 class Pc_manager(object):
+    '''读取用户信息文件，同时可以增删主机信息，最后让管理员选择被管理的主机'''
     def __init__(self):
         self.users_dic = {}
         with open(data_path, 'r', encoding='utf-8') as f:
@@ -122,7 +121,8 @@ class Pc_manager(object):
             print('%s   %s' % (k, self.users_data[k]))
 
 
-class Input_fun(threading.Thread):
+class Input_fun(threading.Thread):   #11111
+    '''这个继承式调用类用来跟第一个类进行交互的：此线程类专为得到管理用户的输入命令。 使用了单独的线程得到用户的命令，并与主机交互'''
     message = ''
     def __init__(self):
         super(Input_fun, self).__init__()
