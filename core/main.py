@@ -136,6 +136,11 @@ class Input_fun(threading.Thread):   #11111
             Input_fun.message = info
             event.set()
 
+
+event = threading.Event()
+event.clear()
+
+'''
 if __name__ == '__main__':
     pc_dic = Pc_manager().users_dic
     t_obj = []
@@ -155,5 +160,5 @@ if __name__ == '__main__':
 
     # event = threading.Event()
     # event.clear()
-
+'''
 
